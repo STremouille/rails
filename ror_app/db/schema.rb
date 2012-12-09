@@ -22,13 +22,6 @@ ActiveRecord::Schema.define(:version => 20121123090729) do
 
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "movies", :force => true do |t|
-    t.string   "title"
-    t.string   "duration"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "user_types", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"

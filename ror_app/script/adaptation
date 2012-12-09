@@ -28,6 +28,7 @@ mvModelFileName(){
 
 adaptation(){
 #mvModelFileName $1 $2;
+initDB;
 }
 
 adaptation;

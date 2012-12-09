@@ -1,6 +1,4 @@
 Blog::Application.routes.draw do
-  resources :movies
-
   resources :users do
 	resources :comments
   end
