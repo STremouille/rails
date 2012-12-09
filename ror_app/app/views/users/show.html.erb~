@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Familyname:</b>
+  <%= @user.familyName %>
+</p>
+
+<p>
+  <b>Age:</b>
+  <%= @user.age %>
+</p>
+
+<p>
+	<b> Type : </b>
+	<%= join_userTypes(@user) %>
+</p>
+
+<h2>Comments</h2>
+<%= render @post.comments %>
+
+<h2> Add a comment :</h2>
+<%= render "comments/form"%>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

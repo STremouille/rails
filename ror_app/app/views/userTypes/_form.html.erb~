@@ -1,0 +1,12 @@
+<%= form.fields_for :userTypes do |utForm| %>
+	<div class="field">
+		<%= utForm.label :name, 'Type:' %>
+		<%= utForm.text_field :name %>
+	</div>
+	<% unless utForm.object.nil? || userType_form.object.new_record? %>
+		<div class="field">
+			<%= utForm.label :_destroy, 'Remove :' %>
+			<%= utForm.check_box :_destroy %>
+		</div>
+	<% end %>
+<% end %>

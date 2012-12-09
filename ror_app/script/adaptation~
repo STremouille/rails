@@ -1,0 +1,9 @@
+#!/bin/sh
+
+initDB(){
+	rake db:reset
+	rake db:drop
+	rake db:migrate
+}
+
+initDB;
