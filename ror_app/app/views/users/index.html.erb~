@@ -1,5 +1,12 @@
-<h1>Listing users</h1>
-
+<html>
+<head>	
+	<%= stylesheet_link_tag "style" %>
+	<h1>Listing users</h1>
+</head>
+<body>
+<ul class="navbar">
+<%= render_navigation :renderer => :links %>
+</ul>
 <table>
   <tr>
     <th>Name</th>
@@ -20,7 +27,7 @@
 	 <td><%= join_userTypes(user) %></td>
 	 <td><%= user.comments.length%></td>
     <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_post_path(user) %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
@@ -29,3 +36,5 @@
 <br />
 
 <%= link_to 'New User', new_user_path %>
+</body>
+</html>

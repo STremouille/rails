@@ -1,5 +1,12 @@
-<h1>Listing users</h1>
-
+<html>
+<head>	
+	<%= stylesheet_link_tag "style" %>
+	<h1>Listing users</h1>
+</head>
+<body>
+<ul class="navbar">
+<%= render_navigation %>
+</ul>
 <table>
   <tr>
     <th>Name</th>
@@ -29,3 +36,5 @@
 <br />
 
 <%= link_to 'New User', new_user_path %>
+</body>
+</html>

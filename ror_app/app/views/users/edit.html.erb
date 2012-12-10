@@ -1,6 +1,15 @@
-<h1>Editing User</h1>
-
+<html>
+<head>
+	<%= stylesheet_link_tag "style" %>
+	<h1>Editing User</h1>
+</head>
+<body>
+<ul class="navbar">
+<%= render_navigation %>
+</ul>
 <%= render 'form' %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
+</body>
+</html>
