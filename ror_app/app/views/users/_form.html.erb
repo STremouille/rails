@@ -24,6 +24,11 @@
     <%= user_form.label :age %><br />
     <%= user_form.text_field :age %>
   </div>
+
+	<div class="field">
+    <%= user_form.label :profilImgUrl %><br />
+    <%= user_form.text_field :profilImgUrl %>
+  </div>
 	<h2>Types</h2>
 	<%= render :partial => 'userTypes/form', :locals => {:form => user_form} %>
   <div class="actions">

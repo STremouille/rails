@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :age, :familyName, :name, :userTypes_attributes, :sexe
+  attr_accessible :age, :familyName, :name, :userTypes_attributes
 
   validates :familyName , :presence => true
   validates :name , :presence => true

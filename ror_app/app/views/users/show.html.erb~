@@ -4,10 +4,14 @@
 </head>
 <body>
 <ul class="navbar">
-<%= render_navigation :renderer => :links %>
+<%= render_navigation %>
 </ul>
 
 <p id="notice"><%= notice %></p>
+
+<p>
+  <img src=<%= @user.profilImgUrl %>/>
+</p>
 
 <p>
   <b>Name:</b>

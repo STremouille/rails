@@ -5,7 +5,7 @@
 	</head>
 	<body>
 	<ul class="navbar">
-			<%= render_navigation :renderer => :html %>
+			<%= render_navigation %>
 	</ul>
 		Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte.	
 
