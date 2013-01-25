@@ -6,9 +6,10 @@
 </head>
 <body>
 <ul class="navbar">
-<%= render_navigation :renderer => :links %>
+<%= render_navigation %>
 </ul>
-<%= render 'form' %>
+<%= render 'form' %
+<%= file_field :avatar %>
 
 <%= link_to 'Back', users_path %>
 </body>

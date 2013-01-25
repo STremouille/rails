@@ -5,8 +5,9 @@
 </head>
 <body>
 <ul class="navbar">
-<%= render_navigation :renderer => :links %>
+<%= render_navigation %>
 </ul>
+<%= image_tag @user.avatar.url(:medium)
 <%= render 'form' %>
 
 <%= link_to 'Show', @user %> |

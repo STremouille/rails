@@ -9,12 +9,12 @@
 </ul>
 <table>
   <tr>
+	 <th>Picture</th>
     <th>Name</th>
     <th>Familyname</th>
     <th>Age</th>
     <th>Type</th>
 	 <th>Comments</th>
-	 <th>Profile Picture</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,16 +22,12 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= user.avatar.url(:thumb) %></td>
     <td><%= user.name %></td>
     <td><%= user.familyName %></td>
     <td><%= user.age %></td>
 	 <td><%= join_userTypes(user) %></td>
 	 <td><%= user.comments.length%></td>
-	 <td><%= if (user.profilImgUrl != "") 
-					"Yes"
-				else
-					"No"
-			end%></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

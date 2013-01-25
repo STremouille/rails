@@ -26,8 +26,8 @@
   </div>
 
 	<div class="field">
-    <%= user_form.label :profilImgUrl %><br />
-    <%= user_form.text_field :profilImgUrl %>
+    <%= user_form.label "Avatar"%><br/>
+    <%= user_form.file_field :avatar %>
   </div>
 	<h2>Types</h2>
 	<%= render :partial => 'userTypes/form', :locals => {:form => user_form} %>
