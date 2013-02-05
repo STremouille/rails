@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'json'
 
+gem 'pusher'
+
 gem 'simple-navigation'
 
 # Gems used only for assets and not required

@@ -7,8 +7,9 @@
 <ul class="navbar">
 <%= render_navigation %>
 </ul>
-<%= image_tag @user.avatar.url(:medium)
+<%= image_tag @user.avatar.url(:medium) %>
 <%= render 'form' %>
+<%= render 'formUpload' %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

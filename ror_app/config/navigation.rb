@@ -51,6 +51,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #
 	 primary.item :home, 'Home' , root_path
     primary.item :users, 'Users', users_path
+	 primary.item :uploads, 'Upload', uploads_path
 
 
     # Add an item which has a sub navigation (same params, but with block)

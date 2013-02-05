@@ -1,9 +1,9 @@
 Blog::Application.routes.draw do
-  resources :movies
-
-  resources :posts do
+  resources :users do
 	resources :comments
   end
+
+   resources :uploads
 
   get "home/index"
 

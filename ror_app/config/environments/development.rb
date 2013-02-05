@@ -1,3 +1,5 @@
+require 'pusher'
+
 Blog::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -37,4 +39,9 @@ Blog::Application.configure do
 
   #PaperClip
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  #Pusher
+  Pusher.app_id = 35993
+  Pusher.key = 'e483c9d34a82828e3275'
+  Pusher.secret = '0f022cab846dc858dc2f'
 end

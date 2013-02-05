@@ -3,26 +3,25 @@ class User < ActiveRecord::Base
 
   validates :familyName , :presence => true
   validates :name , :presence => true
-  validates_attachment_content_type :avatar, :content_type=>['image/jpeg', 'image/png', 'image/gif']
-  validates_attachment_size :avatar, :less_than => 1.megabyte , :message => "Avatar picture must be less than 1Mb"
-
+  
+  
   has_many :comments, :dependent => :destroy
   has_many :userTypes
 
-  has_attached_file :avatar,
+   accepts_nested_attributes_for :userTypes, :allow_destroy => :true,
+    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
+	#Avatar picture
+	validates_attachment_content_type :avatar, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message=>"Avatar must be jpeg|png|gif"
+	validates_attachment_size :avatar, :less_than => 1.megabyte , :message => "Avatar picture must be less than 1Mb"
+
+	has_attached_file :avatar,
   :path => ':rails_root/app/assets/images/:attachment/:id/:style/:filename.:content_type_extension',
   :url => ':attachment/:id/:style/:filename.:content_type_extension',
   :styles => {
       :thumb => "50x50#",
       :small  => "150x150>",
       :medium => "300x300" }
-
-
-  
-
-
-  accepts_nested_attributes_for :userTypes, :allow_destroy => :true,
-    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 
 end
 
