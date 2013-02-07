@@ -82,4 +82,12 @@ class UploadsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /uploads
+  # GET /uploads.json
+  def download
+		@upload = Upload.find(params[:id])
+    	send_file @upload.content.path
+
+  end
 end

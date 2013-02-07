@@ -42,6 +42,9 @@ class UploadsController < ApplicationController
   def create
     @upload = Upload.new(params[:upload])
     respond_to do |format|
+      if(@upload.name="")
+			@upload.name=@upload.content.original_filename
+		end
       if @upload.save
         format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
         format.json { render json: @upload, status: :created, location: @upload }
@@ -77,6 +80,14 @@ class UploadsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to uploads_url }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /uploads
+  # GET /uploads.json
+  def download
+		@upload = Upload.find(params[:id])
+    	send_file @upload.content.path
     end
   end
 end

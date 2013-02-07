@@ -1,11 +1,15 @@
 Blog::Application.routes.draw do
-  resources :uploads
+  
 
   resources :users do
 	resources :comments
   end
 
-   resources :upload
+	resources :uploads do
+     	member do
+      	get :download
+    	end
+   end    
 
   get "home/index"
 
