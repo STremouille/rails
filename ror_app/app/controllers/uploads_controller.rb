@@ -41,8 +41,10 @@ class UploadsController < ApplicationController
   # POST /uploads.json
   def create
     @upload = Upload.new(params[:upload])
-
     respond_to do |format|
+      if(@upload.name="")
+			@upload.name=@upload.content.original_filename
+		end
       if @upload.save
         format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
         format.json { render json: @upload, status: :created, location: @upload }

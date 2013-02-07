@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20130205140037) do
   end
 
   create_table "uploads", :force => true do |t|
+    t.string  "name"
+    t.text    "description"
     t.string  "content_file_name"
     t.string  "content_content_type"
     t.integer "content_file_size"
