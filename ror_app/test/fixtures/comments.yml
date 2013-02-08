@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  commenter: MyString
+  commenter: DDDED
   body: MyString
-  post: 
+  user: sam
 
 two:
   commenter: MyString
   body: MyString
-  post: 
+  user: sam

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	http_basic_authenticate_with :name => "sam", :password => "sam", :except => [:index, :show]
 
   def index
-    @users = User.all
+    @users = User.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+sam:
+  name: Samuel
+  familyName: Trémouille
+  age: 23
+
+bot:
+  name: Gordon
+  familyName: Freeman
+  age: 35

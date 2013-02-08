@@ -2,7 +2,7 @@ class UploadsController < ApplicationController
   # GET /uploads
   # GET /uploads.json
   def index
-    @uploads = Upload.all
+    @uploads = Upload.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb

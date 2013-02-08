@@ -4,7 +4,14 @@ class User < ActiveRecord::Base
   validates :familyName , :presence => true
   validates :name , :presence => true
   
-  
+  def self.search(search)
+    if search
+        find(:all, :conditions => ['name LIKE ? OR familyName LIKE ?', "%#{search}%","%#{search}%"])
+    else
+        find(:all)
+    end
+  end
+
   has_many :comments, :dependent => :destroy
   has_many :userTypes
 
