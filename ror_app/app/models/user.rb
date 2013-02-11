@@ -1,4 +1,11 @@
+#
+# This model represent an user which is modelized by a name, an family name, an age, a profile picture and a type.
+# The user has got many comments. It ensures multiple validations methods : the family name , the name and the type can't be blank.
+# It also ensures that the profile picture uploaded if an image (jpeg,jpg,png,gif) and the size is less than 1Mb
+# 
 class User < ActiveRecord::Base
+
+  #Represent the diffent kind of users Admin, Teacher, Student
   TYPE = %w(Admin Teacher Student)
 
   attr_accessible :age, :familyName, :name, :userType, :avatar
@@ -6,7 +13,9 @@ class User < ActiveRecord::Base
   validates :familyName , :presence => true
   validates :name , :presence => true
   validates :userType, :presence => true
+
   
+  #Return a list of user aswering the search by matching in the database
   def self.search(search)
     if search
         find(:all, :conditions => ['name LIKE ? OR familyName LIKE ?', "%#{search}%","%#{search}%"])
@@ -15,15 +24,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  #Return the user matching the corresponding id
   def self.findById(id)
-    return find(:all, :conditions => ['id LIKE ? ', "%#{id}%"])
+    return find(:all, :conditions => ['id LIKE ? ', "%#{id}%"])[0]
   end
 
 
   has_many :comments, :dependent => :destroy
   
 	#Avatar picture
-	validates_attachment_content_type :avatar, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message=>"Avatar must be jpeg|png|gif"
+	validates_attachment_content_type :avatar, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'image/jpg'], :message=>"Avatar must be jpeg|png|gif"
 	validates_attachment_size :avatar, :less_than => 1.megabyte , :message => "Avatar picture must be less than 1Mb"
 
 	has_attached_file :avatar,

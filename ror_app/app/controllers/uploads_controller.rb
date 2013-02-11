@@ -1,6 +1,8 @@
+#Controller for model Uploadss
 class UploadsController < ApplicationController
   # GET /uploads
   # GET /uploads.json
+  #invoke to show index and fetch params if there is (search,group,id)
   def index
     if(params[:search]!="")
       @uploads = Upload.search(params[:search])
@@ -21,6 +23,7 @@ class UploadsController < ApplicationController
 
   # GET /uploads/1
   # GET /uploads/1.json
+  #invoke to show an individual upload
   def show
     @upload = Upload.find(params[:id])
 
@@ -32,6 +35,7 @@ class UploadsController < ApplicationController
 
   # GET /uploads/new
   # GET /uploads/new.json
+  #invoke to instanciate an upload and fectch the param id to put to new upload's owner
   def new
     @upload = Upload.new
 
@@ -46,12 +50,14 @@ class UploadsController < ApplicationController
   end
 
   # GET /uploads/1/edit
+  #invoke to edit an upload with parameters fetch from the formular
   def edit
     @upload = Upload.find(params[:id])
   end
 
   # POST /uploads
   # POST /uploads.json
+  #invoke to create an upload with parameters fetch from the formular, ensure that the upload's name isn't null if it is it put the original file name instead, it also put as default share group the owner type
   def create
     @upload = Upload.new(params[:upload])
     if(@upload.name=="")
@@ -59,7 +65,7 @@ class UploadsController < ApplicationController
 		end
 
     if(@upload.uploadGroup=="")
-      @upload.uploadGroup=(User.findById(@upload.ownerId)[0]).userType
+      @upload.uploadGroup=(User.findById(@upload.ownerId)).userType
     end
 
     respond_to do |format|
@@ -75,6 +81,7 @@ class UploadsController < ApplicationController
 
   # PUT /uploads/1
   # PUT /uploads/1.json
+  #invoke to update an upload with parameters fetch from the formular
   def update
     @upload = Upload.find(params[:id])
 
@@ -91,6 +98,7 @@ class UploadsController < ApplicationController
 
   # DELETE /uploads/1
   # DELETE /uploads/1.json
+  #invoke to destroy an upload with parameters fetch from the formular
   def destroy
     @upload = Upload.find(params[:id])
     @upload.destroy

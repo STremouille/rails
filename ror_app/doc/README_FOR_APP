@@ -1,2 +1,9 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+This is an application to study the adaptability and compatibility of different componant in a rails application.
+
+In order to we build an application of community file sharing.
+
+The first part is about the users.
+
+The second is the upload part.
+
+The third is the adaptability and compatibility of these two elements to ensure group of sharing, user type, and file's owner.

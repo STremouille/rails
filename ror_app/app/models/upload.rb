@@ -1,8 +1,16 @@
+#
+# This model represent an upload which is modelized by a name, a little text description, a share group, an owner and a content (the uploaded file in question).
+# It ensures multiple validations methods : the name and the owner can't be blank and the uploaded file can't be more than 10 Mb
+
 class Upload < ActiveRecord::Base
 	attr_accessible :content, :description, :name, :uploadGroup, :ownerId
 
   validates :name , :presence => true
   validates :ownerId , :presence => true
+  validates_attachment_size :content, :less_than => 10.megabyte , :message => "Upload must be less than 10Mb"
+
+
+  #Return a list of uploads aswering the search by matching in the database
 	def self.search(search)
     if search
         find(:all, :conditions => ['name LIKE ? OR description LIKE ?', "%#{search}%","%#{search}%"])
@@ -11,10 +19,12 @@ class Upload < ActiveRecord::Base
     end    
   end
 
+  #Return the user matching the corresponding upload group
   def self.searchForGroup(fgroup)
     find(:all, :conditions => ['uploadGroup LIKE ? ', "%#{fgroup}%"])
   end
 
+  #Return the user matching the corresponding owner
   def self.searchForOwned(id)
     find(:all, :conditions => ['ownerId LIKE ? ', "%#{id}%"])
   end

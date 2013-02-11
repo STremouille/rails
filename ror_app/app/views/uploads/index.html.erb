@@ -20,7 +20,7 @@
 <% @uploads.each do |upload| %>
   <tr>
     <td><%= upload.name %></td>
-    <td><%= (User.findById(upload.ownerId))[0].name+" " + (User.findById(upload.ownerId))[0].familyName %></td>
+    <td><%= (User.findById(upload.ownerId)).name+" " + (User.findById(upload.ownerId)).familyName %></td>
     <td><%= upload.uploadGroup %></td>
 	 <td><%= upload.content.content_type %></td>
     <td><%= upload.content.size %></td>

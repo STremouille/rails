@@ -1,9 +1,11 @@
+#Controller for model Users, you have to fit the http authentification method to edit, create, or destroy user
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
 	http_basic_authenticate_with :name => "sam", :password => "sam", :except => [:index, :show]
 
+  #invoke to show index and and fetch params 'search' if there is 
   def index
     @users = User.search(params[:search])
 
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
+  #invoke to show an individual user
   def show
     @user = User.find(params[:id])
 
@@ -26,6 +29,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   # GET /users/new.json
+  #invoke to instanciate an user
   def new
     @user = User.new
 
@@ -36,12 +40,14 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
+  #invoke to edit an user with parameters fetch from the formular
   def edit
     @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.json
+  #invoke to create a user with parameters fetch from the formular
   def create
     @user = User.new(params[:user])
 
@@ -58,6 +64,7 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.json
+  #invoke to update a user with parameters fetch from the formular
   def update
     @user = User.find(params[:id])
 
@@ -74,6 +81,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
+  #invoke to destroy a user with parameters fetch from the formular
   def destroy
     @user = User.find(params[:id])
     @user.destroy
