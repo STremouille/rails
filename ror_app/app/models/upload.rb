@@ -1,5 +1,5 @@
 class Upload < ActiveRecord::Base
-	attr_accessible :content, :description, :name
+	attr_accessible :content, :description, :name, :uploadGroup
 
 	def self.search(search)
     if search

@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :age, :familyName, :name, :userTypes_attributes, :avatar
+  TYPE = %w(Admin Teacher Student)
+
+  attr_accessible :age, :familyName, :name, :userType, :avatar
 
   validates :familyName , :presence => true
   validates :name , :presence => true
+  validates :userType, :presence => true
   
   def self.search(search)
     if search
@@ -13,11 +16,7 @@ class User < ActiveRecord::Base
   end
 
   has_many :comments, :dependent => :destroy
-  has_many :userTypes
-
-   accepts_nested_attributes_for :userTypes, :allow_destroy => :true,
-    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
-
+  
 	#Avatar picture
 	validates_attachment_content_type :avatar, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message=>"Avatar must be jpeg|png|gif"
 	validates_attachment_size :avatar, :less_than => 1.megabyte , :message => "Avatar picture must be less than 1Mb"

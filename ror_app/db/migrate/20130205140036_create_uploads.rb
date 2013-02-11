@@ -3,6 +3,7 @@ class CreateUploads < ActiveRecord::Migration
     create_table :uploads do |t|
 	t.string :name
 	t.text :description
+	t.string :uploadGroup
 	end
   end
 

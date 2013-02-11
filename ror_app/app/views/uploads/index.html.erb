@@ -7,6 +7,7 @@
 <table>
   <tr>
     <th>File name</th>
+    <th>Group</th>
 	 <th>Type</th>
     <th>Size</th>
     <th>Last Update</th>
@@ -18,6 +19,7 @@
 <% @uploads.each do |upload| %>
   <tr>
     <td><%= upload.name %></td>
+    <td><%= upload.uploadGroup %></td>
 	 <td><%= upload.content.content_type %></td>
     <td><%= upload.content.size %></td>
 	 <td><%= Time.at(upload.content.updated_at) %></td>
