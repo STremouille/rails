@@ -12,7 +12,11 @@
   <% end %>
   <div class="field">
     <%= upload_form.label "Name"%><br/>
-    <%= upload_form.text_field :name %>
+    <%= upload_form.text_field :name , :value=>"" %>
+  </div>
+  <div class="field">
+    <%= upload_form.label "Owner" %><br/>
+    <%= select :upload , :ownerId, User.all.collect {|user| [ user.id.to_s+":"+user.name+" " + user.familyName, user.id ] } %>
   </div>
   <div class="field">
     <%= upload_form.label "Group"%><br/>

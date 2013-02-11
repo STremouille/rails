@@ -2,8 +2,17 @@ class UploadsController < ApplicationController
   # GET /uploads
   # GET /uploads.json
   def index
-    @uploads = Upload.search(params[:search])
+    if(params[:search]!="")
+      @uploads = Upload.search(params[:search])
+    end
+    
+    if(params[:group]!=nil)
+      @uploads = Upload.searchForGroup(params[:group])
+    end
 
+    if(params[:id]!=nil)
+      @uploads = Upload.searchForOwned(params[:id])
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @uploads }
@@ -26,6 +35,10 @@ class UploadsController < ApplicationController
   def new
     @upload = Upload.new
 
+    if(params[:id]!=nil)
+      @upload.ownerId=params[:id]
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @upload }
@@ -41,10 +54,15 @@ class UploadsController < ApplicationController
   # POST /uploads.json
   def create
     @upload = Upload.new(params[:upload])
-    respond_to do |format|
-      if(@upload.name="")
+    if(@upload.name=="")
 			@upload.name=@upload.content.original_filename
 		end
+
+    if(@upload.uploadGroup=="")
+      @upload.uploadGroup=(User.findById(@upload.ownerId)[0]).userType
+    end
+
+    respond_to do |format|
       if @upload.save
         format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
         format.json { render json: @upload, status: :created, location: @upload }

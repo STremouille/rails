@@ -9,7 +9,7 @@
 	</ul>
 	
 	<%= form_tag uploads_path, :method => 'get' do %>  
-	<b>Search into uploads : </b>    
+	<b>Search into uploads : </b> 
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
     <% end %>

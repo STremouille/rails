@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.findById(id)
+    return find(:all, :conditions => ['id LIKE ? ', "%#{id}%"])
+  end
+
+
   has_many :comments, :dependent => :destroy
   
 	#Avatar picture

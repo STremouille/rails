@@ -7,6 +7,7 @@
 <table>
   <tr>
     <th>File name</th>
+    <th>Owner</th>
     <th>Group</th>
 	 <th>Type</th>
     <th>Size</th>
@@ -19,6 +20,7 @@
 <% @uploads.each do |upload| %>
   <tr>
     <td><%= upload.name %></td>
+    <td><%= (User.findById(upload.ownerId))[0].name+" " + (User.findById(upload.ownerId))[0].familyName %></td>
     <td><%= upload.uploadGroup %></td>
 	 <td><%= upload.content.content_type %></td>
     <td><%= upload.content.size %></td>

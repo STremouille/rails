@@ -31,6 +31,9 @@
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to "Show Owned Files", :controller => "uploads", :action => "index", :id => user %></td>
+    <td><%= link_to "Show Group Files", :controller => "uploads", :action => "index", :group => user.userType %></td>
+    <td><%= link_to "Upload new file", :controller => "uploads", :action => "new", :id => user %></td>
   </tr>
 <% end %>
 </table>

@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130205140037) do
     t.string  "name"
     t.text    "description"
     t.string  "uploadGroup"
+    t.integer "ownerId"
     t.string  "content_file_name"
     t.string  "content_content_type"
     t.integer "content_file_size"

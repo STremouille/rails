@@ -4,6 +4,7 @@ class CreateUploads < ActiveRecord::Migration
 	t.string :name
 	t.text :description
 	t.string :uploadGroup
+  t.integer :ownerId
 	end
   end
 
