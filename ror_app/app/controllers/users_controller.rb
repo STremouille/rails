@@ -47,12 +47,13 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  #invoke to create a user with parameters fetch from the formular
+  #invoke to create a user with parameters fetch from the formular and send the welcome mail
   def create
     @user = User.new(params[:user])
-
+	
     respond_to do |format|
       if @user.save
+        UserMailer.welcome_email(@user).deliver
         format.html { redirect_to @user, :notice => 'User was successfully created.' }
         format.json { render :json => @user, :status => :created, :location => @user }
       else

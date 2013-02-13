@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #Represent the diffent kind of users Admin, Teacher, Student
   TYPE = %w(Admin Teacher Student)
 
-  attr_accessible :age, :familyName, :name, :userType, :avatar
+  attr_accessible :age, :familyName, :name, :userType, :avatar, :email
 
   validates :familyName , :presence => true
   validates :name , :presence => true

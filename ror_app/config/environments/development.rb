@@ -44,4 +44,20 @@ Blog::Application.configure do
   Pusher.app_id = 35993
   Pusher.key = 'e483c9d34a82828e3275'
   Pusher.secret = '0f022cab846dc858dc2f'
+
+  #Conf Mail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+      :enable_starttls_auto => true,
+      :address        => 'smtp.gmail.com',
+      :port           => 587,
+      :domain         => 'localhost:3000',
+      :authentication => :plain,
+      :content_type   => "text/html",
+      :user_name      => 'ProjetRails',
+      :password       => 'application'
+  }
+   
 end
