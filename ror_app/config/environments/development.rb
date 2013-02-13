@@ -56,7 +56,7 @@ Blog::Application.configure do
       :domain         => 'localhost:3000',
       :authentication => :plain,
       :content_type   => "text/html",
-      :user_name      => 'ProjetRails',
+      :user_name      => 'myapplicationwelcomemail',
       :password       => 'application'
   }
    
