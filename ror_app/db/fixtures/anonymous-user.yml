@@ -1,5 +1,5 @@
 anonymous:
 	id:1
-	name:user
-	familyName:deleted
+	name:anonymous
+	familyName:user
 	userTypes:Student
