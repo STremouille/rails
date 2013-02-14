@@ -1,20 +1,23 @@
-<html>
-<head>	
-	<%= stylesheet_link_tag "style" %>
-	<h1>Listing users</h1>
+<!DOCTYPE html>   
+<html lang="en">   
+<head>   
+<meta charset="utf-8">   
+<title>User List</title>
+<h1> Listing Users</h1>   
+<meta name="description" content="Creating a Zebra table with Twitter Bootstrap>  
+<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">   
 </head>
 <body>
-<ul class="navbar">
-<%= render_navigation %>
-</ul>
-<table>
+<table class="table table-striped">
+<thead> 
   <tr>
-	 <th>Picture</th>
+    <th>Picture</th>
     <th>Name</th>
     <th>Familyname</th>
     <th>Age</th>
+    <th>Email Adress</th>
     <th>Type</th>
-	 <th>Comments</th>
+    <th>Comments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -26,6 +29,7 @@
     <td><%= user.name %></td>
     <td><%= user.familyName %></td>
     <td><%= user.age %></td>
+    <td><%= user.email %></td>
 	<td><%= user.userType %></td>
 	<td><%= user.comments.length%></td>
     <td><%= link_to 'Show', user %></td>
@@ -34,12 +38,15 @@
     <td><%= link_to "Show Owned Files", :controller => "uploads", :action => "index", :id => user %></td>
     <td><%= link_to "Show Group Files", :controller => "uploads", :action => "index", :group => user.userType %></td>
     <td><%= link_to "Upload new file", :controller => "uploads", :action => "new", :id => user %></td>
-  </tr>
+  </tr><br />
 <% end %>
+</tbody>
 </table>
 
 <br />
 
 <%= link_to 'New User', new_user_path %>
+
+<br />
 </body>
 </html>

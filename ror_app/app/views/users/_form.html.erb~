@@ -10,7 +10,8 @@
       </ul>
     </div>
   <% end %>
-
+<form class="form-horizontal">  
+  <fieldset>
   <div class="field">
     <%= user_form.label :name %><br />
     <%= user_form.text_field :name %>
@@ -26,7 +27,7 @@
   <div class="field">
     <%= user_form.label :email %><br />
     <%= user_form.text_field :email %>
-    </div>
+  </div>
 	<div class="field">
     <%= user_form.label "Avatar"%><br/>
     <%= user_form.file_field :avatar %>
@@ -34,7 +35,9 @@
 
 	<h2>Type</h2>
   <%= select :user, :userType, User::TYPE , {:include_blank => true} %>
-  <div class="actions">
-    <%= user_form.submit %>
-  </div>
+  <div class="form-actions">  
+    <button type="submit" class="btn btn-primary">Create User</button>  
+  </div>  
+  </fieldset>  
+</form> 
 <% end %>

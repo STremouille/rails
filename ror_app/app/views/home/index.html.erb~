@@ -1,25 +1,83 @@
-<html>
-<%= stylesheet_link_tag "style" %>
-	<head>
-		<h1>Welcome</h1>
-	</head>
-	<body>
-	<ul class="navbar">
-			<%= render_navigation %>
-	</ul>
-<p>
-		Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte.	
-</p>
-	<p>
-		Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte, Du texte.	
-</p>	
-		<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
-     <script type="text/javascript">
-  var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
-  var channel = pusher.subscribe('test_channel');
-  channel.bind('greet', function(data) {
-    alert(data.greeting);
-  });
+<!DOCTYPE html>  
+<html lang="en">  
+  <head>  
+    <meta charset="utf-8">  
+    <title>Example of using icons in search form - Twitter Bootstrap version 2.0</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="description" content="Example of using icons in search form - Twitter Bootstrap version 2.0 from w3resource.com">  
+    <meta name="author" content="">  
+  
+    <!-- Le styles -->  
+    <link href="twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">  
+    <style type="text/css">  
+    form {  
+    margin-top: 50px;  
+    }  
+    </style>  
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->  
+    <!--[if lt IE 9]>  
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>  
+    <![endif]-->  
+  
+    <!-- Le fav and touch icons -->  
+    <link rel="shortcut icon" href="twitter-bootstrap-v2/docs/examples/images/favicon.ico">  
+    <link rel="apple-touch-icon" href="twitter-bootstrap-v2/docs/examples/images/apple-touch-icon.png">  
+    <link rel="apple-touch-icon" sizes="72x72" href="twitter-bootstrap-v2/docs/examples/images/apple-touch-icon-72x72.png">  
+    <link rel="apple-touch-icon" sizes="114x114" href="twitter-bootstrap-v2/docs/examples/images/apple-touch-icon-114x114.png">  
+  </head> 
+<div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
+  <div class="carousel-inner">
+    <div class="item active"><!-- class of active since it's the first item -->
+      <img src="/assets/HomePage.jpg" alt="" />
+      <div class="carousel-caption">
+        <p><font size="5">Upload</font></p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="/assets/download.jpg" alt="" />
+      <div class="carousel-caption">
+        <p><font size="5">Download</font></p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="/assets/share.jpg" alt="" />
+      <div class="carousel-caption">
+        <p><font size="5">Share</font></p>
+      </div>
+    </div>
+  </div><!-- /.carousel-inner -->
+  <!--  Next and Previous controls below
+        href values must reference the id for this carousel -->
+    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+</div><!-- /.carousel -->
+	<body>  
+    <%= form_tag uploads_path, :method => 'get' do %>   
+        <form class="well form-search">  
+            <div class="input-append">
+            <label class="control-label" for="input01">Search into uploads : </label>
+            <input type="text" class="span3 search-query" placeholder="Search..."/>  
+            <button type="submit" class="btn"><i class="icon-search"></i> Search</button> 
+            </div>  
+        </form>  
+    <% end %>
+  <%= form_tag users_path, :method => 'get' do %>  
+        <form class="well form-search">
+	    <div class="input-append">
+            <label class="control-label" for="input02">Search into users : </label>  
+            <input type="text" class="span3 search-query" placeholder="Search..."/>  
+            <button type="submit" class="btn"><i class="icon-search"></i> Search</button>
+            </div>  
+        </form>   
+    <% end %>
+   <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+<script type="text/javascript">
+$(function(){
+   $('.carousel').carousel();
+});
 </script>
-	</body>
+</body>  
 </html>

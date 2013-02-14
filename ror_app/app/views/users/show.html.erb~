@@ -1,15 +1,10 @@
 <html>
 <head>
-	<%= stylesheet_link_tag "style" %>
 </head>
 <body>
-<ul class="navbar">
-<%= render_navigation %>
-</ul>
-
 <p id="notice"><%= notice %></p>
 
-<p>
+<p style="padding-right: 20px">
   <%= image_tag @user.avatar.url(:medium) %>
 </p>
 
@@ -22,10 +17,14 @@
   <b>Familyname:</b>
   <%= @user.familyName %>
 </p>
-
 <p>
   <b>Age:</b>
   <%= @user.age %>
+</p>
+
+<p>
+  <b>Email Adress:</b>
+  <%= @user.email %>
 </p>
 
 <p>

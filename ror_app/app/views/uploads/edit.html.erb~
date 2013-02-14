@@ -1,6 +1,6 @@
-<%= stylesheet_link_tag "style" %>
 <h1>Editing upload</h1>
-<ul class="navbar">
+<%= render_navigation %>
+</ul>
 <%= render 'form' %>
 
 <%= link_to 'Show', @upload %> |

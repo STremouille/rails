@@ -1,12 +1,21 @@
+
+<!DOCTYPE html>   
+<html lang="en">   
+<head>   
+<meta charset="utf-8">   
+<title>User List</title>
 <% require 'time' %>
-<%= stylesheet_link_tag "style" %>
-<h1>Listing uploads</h1>
-<ul class="navbar">
-<%= render_navigation %>
-</ul>	
-<table>
+<h1>Listing uploads</h1>  
+<meta name="description" content="Creating a Zebra table with Twitter Bootstrap>  
+<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">   
+</head>
+<body>
+<table class="table table-striped">
+<thead>
   <tr>
     <th>File name</th>
+    <th>Owner</th>
+    <th>Group</th>
 	 <th>Type</th>
     <th>Size</th>
     <th>Last Update</th>
@@ -18,17 +27,22 @@
 <% @uploads.each do |upload| %>
   <tr>
     <td><%= upload.name %></td>
+    <td><%= (User.findById(upload.ownerId)).name+" " + (User.findById(upload.ownerId)).familyName %></td>
+    <td><%= upload.uploadGroup %></td>
 	 <td><%= upload.content.content_type %></td>
     <td><%= upload.content.size %></td>
 	 <td><%= Time.at(upload.content.updated_at) %></td>
     <td><%= link_to 'Details', upload %></td>
     <td><%= link_to 'Edit', edit_upload_path(upload) %></td>
-	 <td><%= link_to 'Download', download_upload_path(uploads) %></td>
+	 <td><%= link_to 'Download', download_upload_path(upload) %></td>
     <td><%= link_to 'Destroy', upload, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
 <%= link_to 'New Upload', new_upload_path %>
+</body>
+</html>

@@ -1,12 +1,7 @@
 <html>
 <head>
-	<%= stylesheet_link_tag "style" %>
 </head>
 <body>
-<ul class="navbar">
-<%= render_navigation %>
-</ul>
-
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -22,15 +17,14 @@
   <b>Familyname:</b>
   <%= @user.familyName %>
 </p>
-
-<p>
-  <b>Mailbox:</b>
-  <%= @user.email %>
-</p>
-
 <p>
   <b>Age:</b>
   <%= @user.age %>
+</p>
+
+<p>
+  <b>Email Adress:</b>
+  <%= @user.email %>
 </p>
 
 <p>

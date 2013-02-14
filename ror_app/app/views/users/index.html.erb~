@@ -1,20 +1,23 @@
-<html>
-<head>	
-	<%= stylesheet_link_tag "style" %>
-	<h1>Listing users</h1>
+<!DOCTYPE html>   
+<html lang="en">   
+<head>   
+<meta charset="utf-8">   
+<title>User List</title>
+<h1> Listing Users</h1>   
+<meta name="description" content="Creating a Zebra table with Twitter Bootstrap>  
+<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">   
 </head>
 <body>
-<ul class="navbar">
-<%= render_navigation %>
-</ul>
-<table>
+<table class="table table-striped">
+<thead> 
   <tr>
-	 <th>Picture</th>
+    <th>Picture</th>
     <th>Name</th>
     <th>Familyname</th>
     <th>Age</th>
+    <th>Email Adress</th>
     <th>Type</th>
-	 <th>Comments</th>
+    <th>Comments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,17 +25,22 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.avatar.url(:thumb) %></td>
+    <td><%= image_tag user.avatar.url(:thumb) %></td>
     <td><%= user.name %></td>
     <td><%= user.familyName %></td>
     <td><%= user.age %></td>
-	 <td><%= join_userTypes(user) %></td>
-	 <td><%= user.comments.length%></td>
+    <td><%= user.email %></td>
+	<td><%= user.userType %></td>
+	<td><%= user.comments.length%></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
+    <td><%= link_to "Show Owned Files", :controller => "uploads", :action => "index", :id => user %></td>
+    <td><%= link_to "Show Group Files", :controller => "uploads", :action => "index", :group => user.userType %></td>
+    <td><%= link_to "Upload new file", :controller => "uploads", :action => "new", :id => user %></td>
+  </tr><br />
 <% end %>
+</tbody>
 </table>
 
 <br />
