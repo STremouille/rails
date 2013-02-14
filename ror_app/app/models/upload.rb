@@ -28,7 +28,16 @@ class Upload < ActiveRecord::Base
   def self.searchForOwned(id)
     find(:all, :conditions => ['ownerId LIKE ? ', "%#{id}%"])
   end
-	
+  #Function call to switch the owner id for deleted user to the anonymous one
+  def self.switchToAnonymous(ownerId)
+    uploads = searchForOwned(ownerId)
+    uploads.each do |up|
+      up.ownerId=1
+      puts up
+      up.save
+    end
+  end
+
 	has_attached_file :content,
   :path => ':rails_root/app/assets/uploads/:attachment/:id/:style/:filename',
   :url => ':attachment/:id/:style/:filename',

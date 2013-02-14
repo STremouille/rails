@@ -53,7 +53,9 @@ class UsersController < ApplicationController
 	
     respond_to do |format|
       if @user.save
-        UserMailer.welcome_email(@user).deliver
+        if(@user.email!="")
+          UserMailer.welcome_email(@user).deliver
+        end
         format.html { redirect_to @user, :notice => 'User was successfully created.' }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
@@ -82,8 +84,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  #invoke to destroy a user with parameters fetch from the formular
+  #invoke to destroy a user with parameters fetch from the formular & put the anonymous user as owner
   def destroy
+    #We need to remove the owner id from his uploads to put them anonymous
+    Upload.switchToAnonymous(params[:id])
+
     @user = User.find(params[:id])
     @user.destroy
 

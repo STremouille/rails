@@ -45,6 +45,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faker (1.1.2)
+      i18n (~> 0.5)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -138,6 +140,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.4)
   bootstrap_forms
   coffee-rails (~> 3.2.1)
+  faker
   jquery-rails
   json
   less-rails

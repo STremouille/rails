@@ -4,8 +4,7 @@
 <meta charset="utf-8">   
 <title>User List</title>
 <h1> Listing Users</h1>   
-<meta name="description" content="Creating a Zebra table with Twitter Bootstrap>  
-<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">   
+<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" >   
 </head>
 <body>
 <table class="table table-striped">
@@ -24,6 +23,7 @@
   </tr>
 
 <% @users.each do |user| %>
+    <% if (user.id!=1) %>
   <tr>
     <td><%= image_tag user.avatar.url(:thumb) %></td>
     <td><%= user.name %></td>
@@ -39,6 +39,7 @@
     <td><%= link_to "Show Group Files", :controller => "uploads", :action => "index", :group => user.userType %></td>
     <td><%= link_to "Upload new file", :controller => "uploads", :action => "new", :id => user %></td>
   </tr><br />
+  <% end %>
 <% end %>
 </tbody>
 </table>
