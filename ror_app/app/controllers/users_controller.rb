@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
-	http_basic_authenticate_with :name => "sam", :password => "sam", :except => [:index, :show]
+	#http_basic_authenticate_with :name => "sam", :password => "sam", :except => [:index, :show]
 
   #invoke to show index and and fetch params 'search' if there is 
   def index

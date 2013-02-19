@@ -127,6 +127,8 @@
   
     <li><a href="./User.html">User</a>
   
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
     <li><a href="./UsersController.html">UsersController</a>
   
     <li><a href="./UsersHelper.html">UsersHelper</a>
@@ -179,7 +181,8 @@ method to edit, create, or destroy user</p>
           <pre>POST /users
 POST /users.json</pre>
 
-<p>invoke to create a user with parameters fetch from the formular</p>
+<p>invoke to create a user with parameters fetch from the formular and send
+the welcome mail</p>
           
 
           
@@ -187,9 +190,12 @@ POST /users.json</pre>
             <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
-
+      
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email!</span>=<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">welcome_email</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">deliver</span>
+      <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'User was successfully created.'</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>, <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span> }
     <span class="ruby-keyword">else</span>
@@ -222,13 +228,17 @@ POST /users.json</pre>
           <pre>DELETE /users/1
 DELETE /users/1.json</pre>
 
-<p>invoke to destroy a user with parameters fetch from the formular</p>
+<p>invoke to destroy a user with parameters fetch from the formular &amp; put
+the anonymous user as owner</p>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 85</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-comment">#We need to remove the owner id from his uploads to put them anonymous</span>
+  <span class="ruby-constant">Upload</span>.<span class="ruby-identifier">switchToAnonymous</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">destroy</span>
 
@@ -409,7 +419,7 @@ PUT /users/1.json</pre>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

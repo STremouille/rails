@@ -13,15 +13,15 @@ class Upload < ActiveRecord::Base
   #Return a list of uploads aswering the search by matching in the database
 	def self.search(search)
     if search
-        find(:all, :conditions => ['name LIKE ? OR description LIKE ?', "%#{search}%","%#{search}%"])
+        Upload.order(:name).find(:all, :conditions => ['name LIKE ? OR description LIKE ?', "%#{search}%","%#{search}%"])
     else
-        find(:all)
+        Upload.order(:name).find(:all)
     end    
   end
 
   #Return the user matching the corresponding upload group
   def self.searchForGroup(fgroup)
-    find(:all, :conditions => ['uploadGroup LIKE ? ', "%#{fgroup}%"])
+    Upload.order(:name).find(:all, :conditions => ['uploadGroup LIKE ? ', "%#{fgroup}%"])
   end
 
   #Return the user matching the corresponding owner

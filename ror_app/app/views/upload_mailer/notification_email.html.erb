@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>A new upload have been added !</h3>
+    <p>
+      To check it, click here : <%= link_to @upload.name, "http://0.0.0.0:3000/uploads/"+@upload.id.to_s %><br/>
+    </p>
+    <p>Have a great day !</p>
+    <p>Rails application team</p>
+  </body>
+</html>

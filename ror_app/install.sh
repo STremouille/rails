@@ -2,13 +2,11 @@
 
 install()
 {
-#get sudo privilege
-sudo su
 #cd to user dir
 cd ~;
 
 #rvm :
-sudo apt-get install -y build-essential curl zlib1g-dev libreadline-dev libssl-dev libxml2-dev rails3 sqlite3 libsqlite3-dev git;
+sudo apt-get install -y build-essential curl zlib1g-dev libreadline-dev libssl-dev libxml2-dev rails3 sqlite3 libsqlite3-dev git libxslt1-dev imagemagick;
 
 ##Separation ?
 curl https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable;
@@ -30,6 +28,7 @@ bundle install;
 
 #migrate de la bdd
 rake db:migrate;
+rake db:populate;
 }
 
 install

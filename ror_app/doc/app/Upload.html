@@ -76,6 +76,8 @@
     
     <li><a href="#method-c-searchForOwned">::searchForOwned</a>
     
+    <li><a href="#method-c-switchToAnonymous">::switchToAnonymous</a>
+    
   </ul>
 </nav>
 
@@ -118,6 +120,8 @@
     <li><a href="./UploadsHelper.html">UploadsHelper</a>
   
     <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserMailer.html">UserMailer</a>
   
     <li><a href="./UsersController.html">UsersController</a>
   
@@ -251,6 +255,41 @@ can’t be blank and the uploaded file can’t be more than 10 Mb</p>
 
         
       </div><!-- searchForOwned-method -->
+
+    
+      <div id="method-c-switchToAnonymous" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">switchToAnonymous</span><span
+            class="method-args">(ownerId)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Function call to switch the owner id for deleted user to the anonymous one</p>
+          
+
+          
+          <div class="method-source-code" id="switchToAnonymous-source">
+            <pre><span class="ruby-comment"># File app/models/upload.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">switchToAnonymous</span>(<span class="ruby-identifier">ownerId</span>)
+  <span class="ruby-identifier">uploads</span> = <span class="ruby-identifier">searchForOwned</span>(<span class="ruby-identifier">ownerId</span>)
+  <span class="ruby-identifier">uploads</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">up</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">up</span>.<span class="ruby-identifier">ownerId</span>=<span class="ruby-value">1</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">up</span>
+    <span class="ruby-identifier">up</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- switchToAnonymous-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- switchToAnonymous-method -->
 
     
     </section><!-- public-class-method-details -->

@@ -1,0 +1,133 @@
+require 'spec_helper'
+
+describe UsersController do
+  describe "GET #index" do
+    it "populates an array of users"
+     user = FactoryGirl(:user)
+     get :index
+     assigns(:users).should eq([user])
+    end
+
+    it "renders the :index view"
+    get :index
+    response.should render_template :index
+  end
+  
+  describe "GET #show" do
+    it "assigns the requested user to @user" do
+     contact = Factory(:contact)
+     get :show, id: contact
+     assigns(:contact).should eq(contact) 
+    end
+
+    it "renders the :show view" do
+     get :show, id: FactoryGirl(:user)
+     response.should render_template :show
+    end
+  end
+  
+  describe "GET #new" do
+    it "assigns a new User to @user" do
+     user = FactoryGirl(:user)
+     get :new
+    end
+
+    it "renders the :new view" do
+     get :show, id: FactoryGirl(:user)
+     response.should render_template :new
+    end
+  end
+  
+  describe "POST #create" do
+    context "with valid attributes" do
+          it "creates a new user" do
+      expect{
+        post :create, user: FactoryGirl.attributes_for(:user)
+      }.to change(User,:count).by(1)
+    end
+    
+      it "sends a welcome email"
+      it "redirects to user details page" do
+      post :create, contact: Factory.attributes_for(:user)
+      response.should redirect_to User.last
+    end
+    end
+
+  describe 'PUT update' do
+  before :each do
+    @user = FactoryGirl(:user, name: "Joel", familyName: "Dicker", userType: "admin", email: "joel.dicker@email.com")
+  end
+  
+  context "valid attributes" do
+    it "located the requested @user" do
+      put :update, id: @user, user: FactoryGirl.attributes_for(:user)
+      assigns(:user).should eq(@user)      
+    end
+  
+    it "changes @user's attributes" do
+      put :update, id: @user, 
+        contact: FactoryGirl.attributes_for(:user, name: "Joel", familyName: "Dicker", userType: "admin", email: "joel.dicker@email.com")
+      @user.reload
+      @user.name.should eq("Joel")
+      @user.familyName.should eq("Dicker")
+      @user.userType.should eq("joel.dicker@email.com")
+      @user.email.should eq("admin")
+    end
+  
+    it "redirects to the updated user" do
+      put :update, id: @user, user: FactoryGirl.attributes_for(:user)
+      response.should redirect_to @user
+    end
+  end
+  
+  context "invalid attributes" do
+    it "locates the requested @user" do
+      put :update, id: @user, user: FactoryGirl.attributes_for(:invalid_user)
+      assigns(:user).should eq(@user)      
+    end
+    
+    it "does not change @user's attributes" do
+      put :update, id: @user, 
+        user: FactoryGirl.attributes_for(:user, name: "Joel", familyName: nil, userType: "admin", email: "joel.dicker@email.com")
+      @user.reload
+      @user.name.should_not eq("Joel")
+      @user.familyName.should eq("Dicker")
+    end
+    
+    it "re-renders the edit method" do
+      put :update, id: @user, user: FactoryGirl.attributes_for(:invalid_user)
+      response.should render_template :edit
+    end
+  end
+
+  describe "POST #destroy" do
+    context "with valid attributes" do
+      it "switches the user uploads to anonymous"
+      it "redirects to user details page"
+      it "renders the :show template"
+    end
+
+  describe "PUT update" do
+
+    before :each do
+     @user = FactoryGirl(:user, name: "Joel", familyName: "Dicker")
+    end
+  
+    context "with valid attributes" do
+      it "saves the new user in the database"
+      it "sends a welcome email"
+      it "redirects to user details page"
+    end
+    
+    context "with invalid attributes" do
+          it "does not save the new user" do
+      expect{
+        post :create, contact: FactoryGirl.attributes_for(:invalid_user)
+      }.to_not change(User,:count)
+    end
+      it "re-renders the new method" do
+      post :create, user: FactoryGirl.attributes_for(:invalid_user)
+      response.should render_template :new
+    end
+  end
+end

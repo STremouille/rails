@@ -1,0 +1,51 @@
+require 'spec_helper'
+include ActionDispatch::TestProcess
+
+describe Upload do
+ it "has a valid factory" do
+   FactoryGirl.create(:upload).should be_valid
+ end
+
+
+ it "is invalid without a name" do
+   FactoryGirl.build(:upload, name:nil).should_not be_valid
+ end
+
+ it "is invalid without an ownerId" do
+   FactoryGirl.build(:upload, ownerId:nil).should_not be_valid
+ end
+
+
+  it { should validate_attachment_size(:content).less_than(10.megabytes) }
+
+    it "returns a sorted array of results that match" do
+    firstFile = FactoryGirl.create(:upload, name: "my file")
+    secondFile = FactoryGirl.create(:upload, name: "file")
+    thirdFile = FactoryGirl.create(:upload, name: "whatever")
+  
+    Upload.search("file").should == [secondFile, firstFile]
+  end
+
+  it "must return the corresponding group users" do
+    
+    firstFile = FactoryGirl.create(:upload, uploadGroup: "admin", name: "my_file")
+    secondFile = FactoryGirl.create(:upload, uploadGroup: "teacher", name: "whatever")
+    thirdFile = FactoryGirl.create(:upload, uploadGroup: "admin", name: "file")
+  
+  
+    Upload.searchForGroup("admin").should == [thirdFile, firstFile]
+  end
+
+it "must return the corresponding group users" do
+    
+    firstFile = FactoryGirl.create(:upload, uploadGroup: "admin", name: "my_file")
+    secondFile = FactoryGirl.create(:upload, uploadGroup: "teacher", name: "whatever")
+    thirdFile = FactoryGirl.create(:upload, uploadGroup: "admin", name: "file")
+  
+  
+    Upload.searchForGroup("admin").should_not include secondFile
+  end
+
+
+ end
+

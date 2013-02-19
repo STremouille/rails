@@ -13,12 +13,12 @@ class User < ActiveRecord::Base
   validates :familyName , :presence => true
   validates :name , :presence => true
   validates :userType, :presence => true
-
+  validates :email , :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
   
   #Return a list of user aswering the search by matching in the database
   def self.search(search)
     if search
-        find(:all, :conditions => ['name LIKE ? OR familyName LIKE ?', "%#{search}%","%#{search}%"])
+        User.order(:name).find(:all, :conditions => ['name LIKE ? OR familyName LIKE ?', "%#{search}%","%#{search}%"])
     else
         find(:all)
     end
@@ -26,7 +26,12 @@ class User < ActiveRecord::Base
 
   #Return the user matching the corresponding id
   def self.findById(id)
-    return find(:all, :conditions => ['id LIKE ? ', "%#{id}%"])[0]
+    return User.order(:name).find(:all, :conditions => ['id LIKE ? ', "%#{id}%"])[0]
+  end
+
+  #Return a list of users belonging to specified group
+  def self.findByGroup(group)
+    return find(:all, :conditions => ['userType LIKE ? ', "%#{group}%"])
   end
 
 

@@ -1,0 +1,56 @@
+require 'spec_helper'
+include Rails.application.routes.url_helpers
+
+describe User do
+ it "has a valid factory" do
+   FactoryGirl.create(:user).should be_valid
+ end
+
+ it "is invalid without a name" do
+   FactoryGirl.build(:user, name:nil).should_not be_valid
+ end
+
+ it "is invalid without a familyname" do
+   FactoryGirl.build(:user, familyName:nil).should_not be_valid
+ end
+
+ it "is invalid without an email adress" do
+   FactoryGirl.build(:user, email:nil).should_not be_valid
+ end
+
+ it "is invalid without a type" do
+   FactoryGirl.build(:user, userType:nil).should_not be_valid
+ end
+ 
+ it "has a unique email adress" do
+  FactoryGirl.create(:user, email: "pierre.martin@example.com")
+  FactoryGirl.build(:user, email: "pierre.martin@example.com").should_not be_valid
+ end
+
+ it "should reject invalid email addresses" do
+    addresses = %w[user@example,com user_at_example.org example.user@example.]
+    addresses.each do |address|
+
+        invalid_email_user = FactoryGirl.build(:user, :email => address)
+
+        invalid_email_user.should_not be_valid
+    end
+end
+    it "returns a sorted array of results that match" do
+    will = FactoryGirl.create(:user, name: "Will", familyName: "Smith")
+    michael = FactoryGirl.create(:user, name: "Michel", familyName: "Smith")
+    johnson = FactoryGirl.create(:user, name: "Bob", familyName: "Johnson")
+  
+    User.search("Smith").should == [michael, will]
+  end
+
+it "returns a sorted array of results that match" do
+    will = FactoryGirl.create(:user, name: "Will", familyName: "Smith")
+    michael = FactoryGirl.create(:user, name: "Michel", familyName: "Smith")
+    johnson = FactoryGirl.create(:user, name: "Bob", familyName: "Johnson")
+  
+    User.search("Smith").should_not include johnson
+  end
+
+ it { should validate_attachment_size(:avatar).less_than(1.megabytes) }
+end
